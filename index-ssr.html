@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>SSR</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="./src/css/styles.css" /> -->
+    <!-- <script src="main.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="./src/css/systemtheme.css">
+    <link rel="stylesheet" type="text/css" href="./src/css/theme.css">
+    <link rel="stylesheet" type="text/css" href="./src/css/styles.css">
+    <script src="./lib/js/ResizeSensor.js"></script>
+    <script src="./lib/js/ElementQueries.js"></script>
+</head>
+<body>
+    <script src="./dist/0.0.1/card.min.js"></script>
+
+    <div id="proto_7067" data-ssr="true">
+
+        <div class="pro-card tostory-card" data-reactroot="">
+            <div class="card-background">
+                <img class="proto-lazy-load-image" src="https://cdn.protograph.pykih.com/lib/bg-image.jpg" data-src="https://cdn.protograph.pykih.com/images/TheWire/e55455ef9128e35c/2240.jpeg"
+                    alt="Zen and the Art of Sanitation, or the Right Way to Keep a Country Clean" />
+                <div class="background-overlay"></div>
+            </div>
+            <div class="intersection-tag">
+                <div class="series">#
+                    <!-- -->Grit
+                    <div class="intersection">Identity</div>
+                </div>
+            </div>
+            <div class="context">
+                <h1>Zen and the Art of Sanitation, or the Right Way to Keep a Country Clean</h1>
+                <p>In Japan, cleaning is a public service to be performed by everyone, not relegated to one m....</p>
+                <div class="publishing-info">
+                    <div class="byline">
+                        <div class="byline-name">Janaki Nair</div>
+                    </div>
+                    <div class="timeline">6 months ago</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var x = new ProtoGraph.Card.toStory(),
+                params = {
+                    "selector": document.querySelector('#proto_7067'),
+                    "isFromSSR": true,
+                    "data_url": './dist/0.0.1/sample.json',
+                    "site_configs": { "name": "moiz", "dis_qus_integration": "", "house_colour": "#ff2600", "reverse_house_colour": "#ffffff", "font_colour": "#ffffff", "reverse_font_colour": "#4f8f00", "logo_url": "https://dnt71st2q6cqr.cloudfront.net/images/moiz/c743380fd32d0437/269.png", "favicon_url": "https://dnt71st2q6cqr.cloudfront.net/images/moiz/6b4a90337ce678b8/403.jpeg", "ga_code": "", "story_card_style": "Clear: Color", "primary_language": "Hindi", "seo_name": "Indian Express", "is_lazy_loading_activated": true, "comscore_code": "13184768", "gtm_id": "GTM-5CTQK3", "is_ad_enabled": false }
+                };
+            x.init(params);
+            x.render()
+        </script>
+    </div>
+
+</body>
+</html>

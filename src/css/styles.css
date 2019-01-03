@@ -1,0 +1,161 @@
+@font-face {
+  font-family: AvenirLTStd-Medium;
+  src: url("https://cdn.protograph.pykih.com/lib/AvenirLTStd-Medium.otf")
+    format("opentype");
+}
+@font-face {
+  font-family: Avenir-Bold;
+  src: url("https://cdn.protograph.pykih.com/lib/AEH.ttf") format("opentype");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #808080;
+}
+
+.container {
+  width: 300px;
+  height: 430px;
+  background-color: #fff;
+}
+
+.title {
+  width: 100px;
+  height: 45px;
+  color: #fff;
+  background-color: #000;
+  padding: 3px 6px;
+  font-weight: 800;
+  font-family: serif;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.card,
+.intro-card {
+  margin: 15px 10px;
+  width: 230px;
+  height: 280px;
+  background-color: #e7e8eb;
+  display: inline-block;
+  scroll-snap-align: center;
+  overflow: visible;
+  box-shadow: 1px 1px 1px 1px #dadada;
+  vertical-align: top;
+}
+
+.intro-card {
+  margin-left: 35px;
+}
+
+.content {
+  padding: 15px;
+  font-family: Avenir;
+  font-size: 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+}
+
+.header__title {
+  width: 60%;
+  font-family: Avenir;
+  font-size: 20px;
+  font-weight: 800;
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+
+.header__icon {
+  width: max-content;
+  padding: 10px 0px;
+}
+
+.description {
+  margin: 20px 0px;
+  white-space: pre-wrap;
+  height: 85px;
+  overflow: hidden;
+}
+
+.expand {
+  border-bottom: 1px solid #a5a5a5;
+  width: max-content;
+}
+
+.result-cards {
+  width: 300px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 300px;
+  scroll-snap-type: x mandatory;
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* remove scrollbar space */
+  background: transparent; /* optional: just make scrollbar invisible */
+}
+
+.card:first-of-type {
+  margin-left: 35px;
+}
+
+.card:last-of-type {
+  margin-right: 35px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.search-input {
+  border: none;
+  border-radius: 4px;
+  width: 230px;
+  height: 40px;
+  background-color: #e7e8eb;
+  background-image: url(search.svg);
+  background-repeat: no-repeat; 
+  background-position: 6px 6px;
+  background-size: 25px;
+  padding: 0px 40px;
+  font-family: Avenir;
+  font-size: 12px;
+  text-align: center;
+}
+
+.search-input:focus {
+  outline: 1px solid #808080;
+}
+
+.search-submit {
+  -webkit-appearance: none;
+  border: none;
+  position: absolute;
+  width: 50px;
+  height: 35px;
+  border-radius: 4px;
+  background: black;
+  top: 20px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-submit-arrow {
+  color: white;
+}
+
+.pro-col-4 {
+  width: 300px;
+}

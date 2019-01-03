@@ -1,0 +1,227 @@
+@function paperShadow($depth) {
+  $val:  0 -1px 1px rgba(0,0,0,0.15);
+  @for $i from 1 through $depth {
+    $v-offset: 10 * $i; 
+    $spread-radius-layer: $v-offset /2; 
+    $spread-radius-shadow: $spread-radius-layer - 1;
+    //Create new layer
+    $val: #{$val} , 0  -#{$v-offset}px 0 -#{$spread-radius-layer}px #e7e8eb ;
+    //Create shadow for layer
+    $val: #{$val} , 0  -#{$v-offset}px 1px -#{$spread-radius-shadow}px rgba(0,0,0,0.15);
+  }
+  @return $val;
+}
+
+@mixin sheet {
+  @for $i from 0 through 5 {
+    &:nth-child(#{$i}) {
+      position: absolute;
+      top: 0;
+      left: 5px * $i;
+      transform: rotate(#{$i * -1}deg);
+      box-shadow: 1px 1px 1px 1px #dadada;
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #808080;
+}
+
+.container {
+  width: 300px;
+  height: 430px;
+  background-color: #fff;
+}
+
+.title {
+  width: 100px;
+  height: 45px;
+  color: #fff;
+  background-color: #000;
+  padding: 3px 6px;
+  font-weight: 800;
+  font-family: serif;
+  cursor: pointer;
+}
+
+.card, .intro-card {
+  margin: 15px 10px;
+  width: 230px;
+  height: 280px;
+  background-color: #e7e8eb;
+  display: inline-block;
+  scroll-snap-align: center;
+  overflow: visible;
+  box-shadow: 1px 1px 1px 1px #dadada;
+}
+
+.intro-card {
+  box-shadow: paperShadow(4);
+  margin-left: 35px;
+}
+
+.content {
+  padding: 15px;
+  font-family: Avenir;
+  font-size: 12px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-content: baseline;
+}
+
+.header__title {
+      width: 60%;
+    font-family: Avenir;
+    font-size: 20px;
+    font-weight: 800;
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
+.header__icon {
+  width: max-content;
+  padding: 10px 0px;
+}
+
+.description {
+      margin: 20px 0px;
+    white-space: pre-wrap;
+    height: 95px;
+    overflow: hidden;
+}
+
+.expand {
+  border-bottom: 1px solid #a5a5a5;
+  width: max-content;
+}
+
+.tag {
+  background-color: #000;
+  color: #fff;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-size: 10px;
+  padding: 4px;
+}
+
+.drname {
+  padding: 10px 0px 0px 0px;
+  border-bottom: 1px solid #cccccc;
+  font-weight: 600;
+  font-size: 22px;
+  height: 75px;
+  position: relative;
+}
+
+.drname-text {
+  position: absolute;
+  bottom: 5px;
+  height: max-content;
+}
+
+.reg {
+  padding: 10px 0px;
+  display: flex;
+}
+
+.reg-date {
+  width: 55%;
+  height: max-content;
+  padding-left: 5%
+}
+
+.reg-no {
+  width: 45%;
+  border-right: 1px solid #cccccc;
+}
+
+.label {
+  text-transform: uppercase;
+  color: #555555;
+  font-size: 9px;
+  padding-bottom: 3px;
+}
+
+.qual {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.location {
+  padding-top: 10px;
+}
+
+.result-cards {
+  width: 300px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 300px;
+  scroll-snap-type: x mandatory;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+.card:first-of-type {
+  margin-left: 35px;
+}
+
+.card:last-of-type {
+  margin-right: 35px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.search-input {
+  border: none;
+  border-radius: 4px;
+  width: 230px;
+  height: 40px;
+  background-color: #e7e8eb;
+  background-image: url(search.svg);
+  background-repeat: no-repeat; 
+  background-position: 6px 6px;
+  background-size: 25px;
+  padding: 0px 40px;
+  font-family: Avenir;
+  font-size: 12px;
+  text-align: center;
+}
+
+.search-input:focus {
+  outline: 1px solid #808080;
+}
+
+.search-submit {
+  -webkit-appearance: none;
+  border: none;
+  position: absolute;
+  width: 50px;
+  height: 35px;
+  border-radius: 4px;
+  background: black;
+  top: 20px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search-submit-arrow {
+  color: white;
+}
