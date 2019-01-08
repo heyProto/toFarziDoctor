@@ -28,18 +28,18 @@ class DCard extends Component {
                 <div className="label">
                   Registration no.
                 </div>
-                {data.registration_number}
+                {data.registration_number ? data.registration_number : 'Unknown'}
               </div>
               <div className="reg-date">
                 <div className="label">
                   Registration date
                 </div>
-                {data.registration_date}
+                {data.registration_date ? data.registration_date : 'Unknown'}
               </div>
             </div>
             <div className="qual">
               <div className="label">Qualification</div>
-              {data.qualification}
+              {data.qualification ? data.qualification : 'Unknown'}
             </div>
             <div className="location">
               <div className="label">

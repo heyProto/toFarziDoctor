@@ -5,42 +5,23 @@ import Card from './src/js/card.jsx';
 window.ProtoGraph = window.ProtoGraph || {};
 window.ProtoGraph.Card = window.ProtoGraph.Card || {};
 
-ProtoGraph.Card.toStory = function () {
-  this.cardType = 'toStoryCard';
+ProtoGraph.Card.toDoctor = function () {
+  this.cardType = 'toDoctorCard';
 }
 
-ProtoGraph.Card.toStory.prototype.init = function (options) {
+ProtoGraph.Card.toDoctor.prototype.init = function (options) {
   this.options = options;
 }
-ProtoGraph.Card.toStory.prototype.renderSixteenCol= function (data) {
+ProtoGraph.Card.toDoctor.prototype.renderSixteenCol= function (data) {
   this.mode = 'col16';
   this.render();
 }
 
-ProtoGraph.Card.toStory.prototype.renderSevenCol= function (data) {
-  this.mode = 'col7';
-  this.render();
-}
-
-ProtoGraph.Card.toStory.prototype.renderFourCol= function (data) {
-  this.mode = 'col4';
-  this.render();
-}
-
-ProtoGraph.Card.toStory.prototype.renderThreeCol= function (data) {
-  this.mode = 'col3';
-  this.render();
-}
-
-ProtoGraph.Card.toStory.prototype.renderTwoCol= function (data) {
-  this.mode = 'col2';
-  this.render();
-}
-ProtoGraph.Card.toStory.prototype.getData = function (data) {
+ProtoGraph.Card.toDoctor.prototype.getData = function (data) {
   return this.containerInstance.exportData();
 }
 
-ProtoGraph.Card.toStory.prototype.render = function () {
+ProtoGraph.Card.toDoctor.prototype.render = function () {
   if (this.options.isFromSSR){
     hydrate(
       <Card

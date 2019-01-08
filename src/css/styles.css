@@ -36,7 +36,7 @@ body {
 
 .card,
 .intro-card {
-  margin: 15px 10px;
+  margin: 5px 10px 0px 10px;
   width: 230px;
   height: 280px;
   background-color: #e7e8eb;
@@ -61,12 +61,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-content: baseline;
+  margin-bottom: 5px;
 }
 
 .header__title {
-  width: 60%;
+  width: 70%;
   font-family: Avenir;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
   white-space: pre-line;
   word-wrap: break-word;
@@ -78,7 +79,7 @@ body {
 }
 
 .description {
-  margin: 20px 0px;
+  margin: 10px 0px 20px 0px;
   white-space: pre-wrap;
   height: 85px;
   overflow: hidden;
@@ -95,6 +96,7 @@ body {
   overflow-x: scroll;
   overflow-y: hidden;
   height: 300px;
+  margin-top: 5px;
   scroll-snap-type: x mandatory;
 }
 
@@ -157,25 +159,24 @@ body {
 }
 
 .scroll-container {
-  height: 15px;
-  margin-bottom: 5px;
-  width: 230px;
-  margin: -10px auto 10px auto;
-  display: flex;
-  justify-content: center;
+    height: 10px;
+    width: 230px;
+    margin: -5px auto 5px auto;
+    display: flex;
+    justify-content: center;
 }
 
 .scroll-circle {
   border-radius: 50%;
-  width: 8px;
-  height: 8px;
+  width: 5px;
+  height: 5px;
   margin: 0px 1px;
   display: inline-block;
   background: lightgrey;
   vertical-align: super;
 }
 
-.scroll-circle:hover {
+.scroll-circle[data-active=true] {
   background: grey;
 }
 

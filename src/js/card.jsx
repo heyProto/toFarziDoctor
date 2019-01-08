@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 import ta from "time-ago";
-import DCard from "./DCard.js";
+import DComponent from "./DComponent.js";
 import VisibilitySensor from "react-visibility-sensor";
+import DropDown from "./DropDown.js"
 // import { parse as parseURL } from 'url';
 
 export default class toDoctorCard extends React.Component {
@@ -16,7 +17,10 @@ export default class toDoctorCard extends React.Component {
       searchPlaceholder: "Search",
       domain: undefined,
       visible: null,
-      checkVis: false
+      checkVis: false,
+      location: 'India',
+      start: 0,
+      count: 0
     };
 
     if (this.props.dataJSON) {
@@ -37,7 +41,6 @@ export default class toDoctorCard extends React.Component {
 
     this.state = stateVar;
     this.goHome = this.goHome.bind(this);
-    this.checkVis = this.visOnChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -56,15 +59,16 @@ export default class toDoctorCard extends React.Component {
     });
   }
 
-  visOnChange() {
-    console.log(window.scrollX);
+  locationSelect(e) {
+    this.setState({location: e})
   }
 
   handleSubmit() {
-    this.setState({ level: 1 });
+    this.setState({ level: 1, start: 0 });
     let API =
       "https://search-dodgy-doctors-izsk7ozifcsawmvchoxsv3p43u.ap-south-1.es.amazonaws.com/doctors/_search";
     let DEFAULT_QUERY = {
+      "from" : this.state.start, "size" : 20,
       query: {
         bool: {
           must: {
@@ -77,7 +81,26 @@ export default class toDoctorCard extends React.Component {
           }
         }
       }
-    };
+    }
+
+      if (this.state.location === 'Punjab') {
+        let DEFAULT_QUERY = {
+          "from" : this.state.start, "size" : 20,
+          query: {
+            bool: {
+              must: {
+                query_string: {
+                  query: this.state.searchTerm // User Provided Name
+                }
+              },
+              should: {
+                term: { state: "Punjab" }
+              }
+            }
+          }
+        }
+      }
+    
     axios
       .get(API, {
         params: {
@@ -90,13 +113,14 @@ export default class toDoctorCard extends React.Component {
           function() {
             this.setState({
               data: result.data.hits.hits,
+              count: result.data.hits.total,
               level: 2,
               searchPlaceholder: "Next search"
             });
           }.bind(this),
           2000
         );
-        console.log(result.data.hits.hits);
+        console.log(result.data.hits.total);
       });
   }
 
@@ -104,19 +128,31 @@ export default class toDoctorCard extends React.Component {
     return this.props.selector.getBoundingClientRect();
   }
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.onScroll, false);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, false);
+  }
+
+  onScroll = () => {
+    console.log('scroll')
+  }
+
   renderSixteenCol() {
     if (this.state.fetchingData) {
       return <div>Loading</div>;
     } else {
-      let count = this.state.data.length;
+      let count = this.state.count;
       let data = this.state.data;
+      let states = [{title: "Punjab", key: "Punjab"}, {title: "India", key: "India"}]
       return (
         <div className="pro-col-4">
           <div className="container">
             <div className="title" onClick={this.goHome}>
               FARZI DOCTOR
             </div>
-            <div className="result-cards" id="result-cards">
               {this.state.level === 1 && (
                 <div className="intro-card">
                   <div className="content">
@@ -139,9 +175,12 @@ export default class toDoctorCard extends React.Component {
                         Is Your Doctor Registered?
                       </div>
                       <div className="header__icon">
-                        <img src="Doc.svg" width="56px" />
+                        <img src="Doc.svg" width="30px" />
                       </div>
+                      
                     </div>
+                    <div className="label">Select region</div>
+                    <DropDown options={states} placeHolder="India" onChange={e=>this.locationSelect(e)}/>
                     <div className="description">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                       sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -152,31 +191,14 @@ export default class toDoctorCard extends React.Component {
                   </div>
                 </div>
               )}
-              {this.state.level === 2 &&
-                data.length > 0 &&
-                data.map((e, i) => (
-                  <VisibilitySensor
-                    onChange={this.visOnChange}
-                    containment={document.getElementById("result-cards")}
-                  >
-                    <DCard data={e._source} count={count} />
-                  </VisibilitySensor>
-                ))}
+              {this.state.level == 2 && (<DComponent data={data} count={count} />)}
               {this.state.level === 2 &&
                 data.length === 0 && (
                   <div className="intro-card">
                     <div className="content">No results found.</div>
                   </div>
                 )}
-            </div>
-            <div className="scroll-container">
-              {this.state.level === 2 &&
-                data.length > 0 &&
-                data.map(e => (
-                  <div className="scroll-circle" key={e.registration_number} />
-                ))}
-            </div>
-            <div className="search-container">
+            <div className="search-container" style={{marginTop: this.state.level === 2 ? '0px' : '30px'}}>
               <input
                 className="search-input"
                 key={this.state.level}
@@ -192,7 +214,9 @@ export default class toDoctorCard extends React.Component {
                   className="search-submit-arrow"
                 />
               </div>
+
             </div>
+
           </div>
         </div>
       );

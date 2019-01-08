@@ -42,13 +42,20 @@ module.exports = {
                 loader: 'babel',
                 query:
                     {
-                        presets: ['react']
+                        presets: ['@babel/preset-react']
                     }
             },
             {
-                test: /\.css$/,
-                loaders: ["style-loader", "css-loader", "sass-loader"]
-            },
+        test: /\.css$/,
+        loaders: ["style-loader", "css-loader"]
+      },
+      // {
+      //     test: /\.css$/,
+      //     loader: "css-loader",
+      //     query: {
+      //       modules: true,
+      //       localIdentName: "[name]__[local]___[hash:base64:5]"
+      //     }},
             {
                 test: /\.json$/,
                 loader: 'json-loader'
