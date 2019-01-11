@@ -64,7 +64,11 @@ export default class toDoctorCard extends React.Component {
   }
 
   handleSubmit() {
-    this.setState({ level: 1, start: 0 });
+    if (this.state.searchTerm.length < 3) {
+      alert('Enter 3 or more characters.')
+    }
+    else {
+      this.setState({ level: 1, start: 0 });
     let API =
       "https://search-dodgy-doctors-izsk7ozifcsawmvchoxsv3p43u.ap-south-1.es.amazonaws.com/doctors/_search";
     let DEFAULT_QUERY = {
@@ -113,15 +117,16 @@ export default class toDoctorCard extends React.Component {
           function() {
             this.setState({
               data: result.data.hits.hits,
-              count: result.data.hits.total,
+              count: result.data.hits.hits.length,
               level: 2,
               searchPlaceholder: "Next search"
             });
           }.bind(this),
           2000
         );
-        console.log(result.data.hits.total);
+        console.log(result);
       });
+    }
   }
 
   exportData() {
@@ -204,6 +209,9 @@ export default class toDoctorCard extends React.Component {
                 key={this.state.level}
                 name="searchTerm"
                 placeholder={this.state.searchPlaceholder}
+                pattern=".{3,}"
+                required title="3 characters minimum"
+                minLength={3}
                 onChange={this.handleChange}
                 onFocus={(this.value = "")}
               />

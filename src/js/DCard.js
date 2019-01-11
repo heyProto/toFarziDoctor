@@ -10,6 +10,7 @@ class DCard extends Component {
   render() {
     let data = this.props.data
     let count = this.props.count
+    let index = this.props.index
     return (
         <div className="card">
           <div className="content">
@@ -17,6 +18,7 @@ class DCard extends Component {
               <div className="tag">
               Matches found: {count}
               </div>
+              <div className="index">{this.props.index}</div>
             </div>
             <div className="drname">
               <div className="drname-text">

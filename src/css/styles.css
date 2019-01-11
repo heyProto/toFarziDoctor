@@ -55,6 +55,7 @@ body {
   padding: 15px;
   font-family: Avenir;
   font-size: 12px;
+  white-space: pre-line;
 }
 
 .header {
@@ -127,8 +128,8 @@ body {
   background-color: #e7e8eb;
   background-image: url(search.svg);
   background-repeat: no-repeat;
-  background-position: 6px 6px;
-  background-size: 25px;
+  background-position: 6px 11px;
+  background-size: 16px;
   padding: 0px 40px;
   font-family: Avenir;
   font-size: 12px;
@@ -200,6 +201,61 @@ body {
     font-size: 20px;
     font-weight: 600;
     padding-bottom: 20%;
+}
+
+.loadmore-text {
+  font-size: 14px;
+  padding: 10px 0px;
+}
+
+.btn {
+    text-transform: uppercase;
+    line-height: 1.5;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 4px 4px 4px 0px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn--lg {
+    padding: 16px 32px;
+    font-size: 16px;
+}
+
+.btn--md {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.btn--sm {
+    padding: 5px 8px;
+    font-size: 12px;
+}
+
+.btn--primary {
+    color: #fff;
+    background-color: #286efa;
+}
+
+.btn--secondary {
+    color: #fff;
+    background-color: #000;
+}
+
+.btn--tertiary {
+    color: #fff;
+    background-color: #c00000;
+}
+
+.btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .pro-col-4 {
